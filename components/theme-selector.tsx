@@ -15,7 +15,7 @@ export function ThemeSelector() {
           variant={theme === "halloween" ? "default" : "outline"}
           className={`${theme === "halloween" ? "halloween-glow" : ""} relative overflow-hidden`}
         >
-          🎃 Halloween
+          Halloween
         </Button>
       </motion.div>
 
@@ -25,7 +25,7 @@ export function ThemeSelector() {
           variant={theme === "galaxy" ? "default" : "outline"}
           className={`${theme === "galaxy" ? "galaxy-glow" : ""} relative overflow-hidden`}
         >
-          🌌 Galaxy
+          Galaxy
         </Button>
       </motion.div>
     </div>

@@ -76,7 +76,7 @@ export default function LeaderboardPage() {
         .from("games")
         .select("*")
         .order("created_at", { ascending: false })
-        .limit(10)
+        .limit(5)
 
       if (gamesError) throw gamesError
 
@@ -176,14 +176,72 @@ export default function LeaderboardPage() {
             {theme === "halloween" ? "See who rules the spooky arena!" : "Champions of the cosmic battlefield!"}
           </p>
         </motion.div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {leaderboard.length > 0 && (
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }}>
+            <Card className="bg-muted/30 backdrop-blur-sm border-border">
+              <CardHeader>
+                <CardTitle className="text-lg text-center text-foreground">
+                  {theme === "halloween" ? "🎃 Spooky Statistics" : "🌌 Cosmic Statistics"}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                  <div>
+                    <p className="text-2xl font-bold text-primary">
+                      {leaderboard.reduce((sum, player) => sum + player.total_games, 0)}
+                    </p>
+                    <p className="text-sm text-muted-foreground">Total Battles</p>
+                  </div>
+                  <div>
+                    <p className="text-2xl font-bold text-secondary">{leaderboard.length}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {theme === "halloween" ? "Spooky Warriors" : "Cosmic Fighters"}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-2xl font-bold text-accent">
+                      {leaderboard.reduce((sum, player) => sum + player.wins, 0)}
+                    </p>
+                    <p className="text-sm text-muted-foreground">Total Victories</p>
+                  </div>
+                  <div>
+                    <p className="text-2xl font-bold text-muted-foreground">
+                      {leaderboard.reduce((sum, player) => sum + player.draws, 0)}
+                    </p>
+                    <p className="text-sm text-muted-foreground">Cosmic Ties</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        )}
+        <motion.div
+          className="flex justify-center space-x-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+        >
+          <Link href="/">
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Button className={`${theme === "halloween" ? "halloween-glow" : "galaxy-glow"}`}>
+                {theme === "halloween" ? "New Battle" : "New Mission"}
+              </Button>
+            </motion.div>
+          </Link>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Button variant="outline" className="border-border bg-transparent" onClick={() => loadLeaderboardData()}>
+              {theme === "halloween" ? "Refresh" : "Refresh"}
+            </Button>
+          </motion.div>
+        </motion.div>
+        <div className="grid grid-cols-1 lg:grid-cols-1 gap-8">
           <motion.div
             className="lg:col-span-2"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
           >
+            
             <Card
               className={`bg-card/80 backdrop-blur-sm border-border ${
                 theme === "halloween" ? "halloween-glow" : "galaxy-glow"
@@ -191,7 +249,7 @@ export default function LeaderboardPage() {
             >
               <CardHeader>
                 <CardTitle className="text-2xl text-card-foreground">
-                  {theme === "halloween" ? "🏆 Top Spooky Warriors" : "🚀 Elite Cosmic Fighters"}
+                  {theme === "halloween" ? "🏆Top Spooky Warriors" : "🏆Elite Cosmic Fighters"}
                 </CardTitle>
                 <CardDescription>Ranked by victories and win percentage</CardDescription>
               </CardHeader>
@@ -324,65 +382,9 @@ export default function LeaderboardPage() {
           </motion.div>
         </div>
 
-        <motion.div
-          className="flex justify-center space-x-4"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-        >
-          <Link href="/">
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button className={`${theme === "halloween" ? "halloween-glow" : "galaxy-glow"}`}>
-                {theme === "halloween" ? "🎃 New Battle" : "🚀 New Mission"}
-              </Button>
-            </motion.div>
-          </Link>
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Button variant="outline" className="border-border bg-transparent" onClick={() => loadLeaderboardData()}>
-              {theme === "halloween" ? "👻 Refresh" : "⭐ Refresh"}
-            </Button>
-          </motion.div>
-        </motion.div>
+        
 
-        {leaderboard.length > 0 && (
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }}>
-            <Card className="bg-muted/30 backdrop-blur-sm border-border">
-              <CardHeader>
-                <CardTitle className="text-lg text-center text-foreground">
-                  {theme === "halloween" ? "🎃 Spooky Statistics" : "🌌 Cosmic Statistics"}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                  <div>
-                    <p className="text-2xl font-bold text-primary">
-                      {leaderboard.reduce((sum, player) => sum + player.total_games, 0)}
-                    </p>
-                    <p className="text-sm text-muted-foreground">Total Battles</p>
-                  </div>
-                  <div>
-                    <p className="text-2xl font-bold text-secondary">{leaderboard.length}</p>
-                    <p className="text-sm text-muted-foreground">
-                      {theme === "halloween" ? "Spooky Warriors" : "Cosmic Fighters"}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-2xl font-bold text-accent">
-                      {leaderboard.reduce((sum, player) => sum + player.wins, 0)}
-                    </p>
-                    <p className="text-sm text-muted-foreground">Total Victories</p>
-                  </div>
-                  <div>
-                    <p className="text-2xl font-bold text-muted-foreground">
-                      {leaderboard.reduce((sum, player) => sum + player.draws, 0)}
-                    </p>
-                    <p className="text-sm text-muted-foreground">Cosmic Ties</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-        )}
+       
       </div>
     </div>
   )

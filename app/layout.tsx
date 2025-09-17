@@ -10,8 +10,7 @@ import "./globals.css"
 
 export const metadata: Metadata = {
   title: "Rock Paper Scissors Game",
-  description: "Turn-based multiplayer Rock Paper Scissors online game with themes",
-  generator: "v0.app",
+  description: "Rock Paper Scissors online game with themes",
 }
 
 export default function RootLayout({

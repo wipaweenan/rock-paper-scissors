@@ -17,9 +17,9 @@ type GameResult = "win" | "lose" | "draw" | null
 const getChoices = (theme: string) => {
   if (theme === "halloween") {
     return [
-      { value: "rock", label: "Pumpkin", icon: "🎃" },
-      { value: "paper", label: "Ghost", icon: "👻" },
-      { value: "scissors", label: "Bat", icon: "🦇" },
+      { value: "rock", label: "Rock", icon: "🎃" },
+      { value: "paper", label: "Paper", icon: "👻" },
+      { value: "scissors", label: "Scissors", icon: "🦇" },
     ] as const
   }
   return [
@@ -303,7 +303,7 @@ function GameContent() {
                           className="w-full h-24 text-lg flex flex-col items-center justify-center gap-2 bg-primary/10 hover:bg-primary/20 border-2 border-primary/20 hover:border-primary/40"
                         >
                           <span className="text-2xl">{choice.icon}</span>
-                          <span>{choice.label}</span>
+                          <span className="text-orange-500">{choice.label}</span>
                         </Button>
                       </motion.div>
                     ))}
@@ -392,20 +392,20 @@ function GameContent() {
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                       <Button onClick={resetGame} className="bg-primary hover:bg-primary/90">
-                        {theme === "halloween" ? "🎃 Play Again" : "🚀 Play Again"}
+                        {theme === "halloween" ? "Play Again" : "Play Again"}
                       </Button>
                     </motion.div>
                     <Link href="/leaderboard">
                       <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                         <Button variant="outline" className="border-border bg-transparent">
-                          {theme === "halloween" ? "👻 Leaderboard" : "⭐ Leaderboard"}
+                          {theme === "halloween" ? "Leaderboard" : "Leaderboard"}
                         </Button>
                       </motion.div>
                     </Link>
                     <Link href="/">
                       <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                         <Button variant="outline" className="border-border bg-transparent">
-                          {theme === "halloween" ? "🏠 Home" : "🏠 Home"}
+                          {theme === "halloween" ? " Home" : "Home"}
                         </Button>
                       </motion.div>
                     </Link>

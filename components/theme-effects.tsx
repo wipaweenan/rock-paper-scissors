@@ -9,7 +9,7 @@ export function ThemeEffects() {
 
   useEffect(() => {
     if (theme === "halloween") {
-      const newBats = Array.from({ length: 3 }, (_, i) => ({
+      const newBats = Array.from({ length: 5 }, (_, i) => ({
         id: i,
         left: Math.random() * 80 + 10,
         top: Math.random() * 60 + 20,

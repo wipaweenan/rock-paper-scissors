@@ -44,7 +44,7 @@ export default function HomePage() {
           transition={{ duration: 0.6 }}
         >
           <h1
-            className={`text-5xl font-bold font-sans text-balance ${
+            className={`text-5xl font-bold font-sans text-balance border-radius-lg  ${
               theme === "halloween" ? "halloween-glow" : theme === "galaxy" ? "galaxy-glow" : ""
             }`}
           >
@@ -116,7 +116,7 @@ export default function HomePage() {
                       theme === "halloween" ? "halloween-glow" : theme === "galaxy" ? "galaxy-glow" : ""
                     }`}
                   >
-                    {theme === "halloween" ? "🎃 Enter Spooky Arena" : "🚀 Launch Into Battle"}
+                    {theme === "halloween" ? "Enter Spooky Arena" : "Launch Into Battle"}
                   </Button>
                 </motion.div>
               </form>
@@ -134,9 +134,9 @@ export default function HomePage() {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
                 variant="outline"
-                className="bg-secondary/20 hover:bg-secondary/30 text-secondary-foreground border-border backdrop-blur-sm"
+                className="bg-secondary/20 hover:bg-secondary/30 text-secondary-foreground border-border backdrop-blur-sm hover:text-secondary-foreground"
               >
-                {theme === "halloween" ? "👻 Hall of Fame" : "⭐ Leaderboard"}
+                {theme === "halloween" ? " Hall of Fame" : "Leaderboard"}
               </Button>
             </motion.div>
           </Link>
